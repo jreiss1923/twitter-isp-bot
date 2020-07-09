@@ -19,6 +19,8 @@ ul = round(st.upload()/1000000, 2)
 if ul < UPLOAD_SPEED * 0.75 or dl < DOWNLOAD_SPEED * 0.75:
     print(api.PostUpdate("@Optimum @OptimumHelp I pay for 25 download 5 upload but I'm getting " +
                          str(dl) + " down and " + str(ul) + " up mbps"))
+else:
+    print("The internet speed is currently good.")
 
 
 
