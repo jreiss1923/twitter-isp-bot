@@ -4,4 +4,6 @@ Using the twitter api and speedtest library to test internet speed and tweet at 
 
 Based on https://github.com/james-atkinson/speedcomplainer
 
+For Windows Task Scheduler I made the settings to run when I was on the computer every 10 minutes.
+
 
