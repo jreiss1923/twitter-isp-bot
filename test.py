@@ -1,6 +1,7 @@
 import twitter
 import speedtest
 import mysql.connector
+from datetime import datetime
 
 codes = open("C:\\Users\\Joshua\\PycharmProjects\\Twitter\\twitter_codes.txt", "r")
 
@@ -28,7 +29,11 @@ st = speedtest.Speedtest()
 dl = round(st.download()/1000000, 2)
 ul = round(st.upload()/1000000, 2)
 
-insert_statement = "INSERT INTO speed_stats (download_speed, upload_speed) values (" + str(dl) + "," + str(ul) + ")"
+now = datetime.now()
+now_string = now.strftime('%Y-%m-%d %H:%M:%S')
+
+insert_statement = "INSERT INTO speed_stats (download_speed, upload_speed, time_recorded) values (" + \
+                   str(dl) + "," + str(ul) + ", '" + now_string + "' )"
 
 cursor.execute(insert_statement)
 db.commit()
