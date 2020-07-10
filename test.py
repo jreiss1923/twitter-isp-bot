@@ -34,8 +34,10 @@ cursor.execute(insert_statement)
 db.commit()
 
 if ul < UPLOAD_SPEED * 0.75 or dl < DOWNLOAD_SPEED * 0.75:
-    print(api.PostUpdate("@Optimum @OptimumHelp I pay for 25 download 5 upload but I'm getting " +
-                         str(dl) + " down and " + str(ul) + " up mbps"))
+    tweet_str = "@Optimum @OptimumHelp I pay for 25 download 5 upload but I'm getting " + str(dl) + " down and "\
+                + str(ul) + " up mbps"
+    api.PostUpdate(tweet_str)
+    print(tweet_str)
 else:
     print("The internet speed is currently good.")
 
