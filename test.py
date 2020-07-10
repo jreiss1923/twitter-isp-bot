@@ -1,7 +1,19 @@
 import twitter
 import speedtest
+import mysql.connector
 
 codes = open("C:\\Users\\Joshua\\PycharmProjects\\Twitter\\twitter_codes.txt", "r")
+
+db = mysql.connector.connect(
+  host="localhost",
+  user="root",
+  password=codes.readline().rstrip(),
+  database="internet_information"
+)
+
+cursor = db.cursor()
+
+
 ACCESS_TOKEN = codes.readline().rstrip()
 ACCESS_SECRET = codes.readline().rstrip()
 KEY = codes.readline().rstrip()
@@ -15,6 +27,11 @@ api = twitter.Api(KEY, KEY_SECRET, ACCESS_TOKEN, ACCESS_SECRET)
 st = speedtest.Speedtest()
 dl = round(st.download()/1000000, 2)
 ul = round(st.upload()/1000000, 2)
+
+insert_statement = "INSERT INTO speed_stats (download_speed, upload_speed) values (" + str(dl) + "," + str(ul) + ")"
+
+cursor.execute(insert_statement)
+db.commit()
 
 if ul < UPLOAD_SPEED * 0.75 or dl < DOWNLOAD_SPEED * 0.75:
     print(api.PostUpdate("@Optimum @OptimumHelp I pay for 25 download 5 upload but I'm getting " +
